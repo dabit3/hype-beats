@@ -1,0 +1,11 @@
+{
+	"api": {
+		"traplord9000x": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"securityType": "API_KEY"
+			}
+		}
+	}
+}

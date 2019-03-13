@@ -1,0 +1,5 @@
+type Beatbox @model {
+  id: ID!
+  clientId: ID!
+  beats: String!
+}

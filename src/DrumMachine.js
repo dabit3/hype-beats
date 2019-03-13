@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useReducer, useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Tone from 'tone';
 
@@ -8,6 +8,14 @@ import StepContext from './StepContext';
 import Transport from './Transport';
 import StepSequencer from './StepSequencer';
 import Fx from './FX';
+
+import { API, graphqlOperation } from 'aws-amplify'
+import { createBeatbox as CreateBeatbox, updateBeatbox as UpdateBeatbox } from './graphql/mutations'
+import { onUpdateBeatbox } from './graphql/subscriptions'
+import uuid from 'uuid/v4'
+
+const id = '001'
+const clientId = uuid()
 
 const Container = styled.div`
   max-width: 800px;
@@ -60,10 +68,39 @@ const initialStepState = {
   Clap: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   HiHat: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   OpenHiHat: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-};
+}
+
+async function updateBeatbox(beats) {
+  const beatbox = {
+    id, clientId, beats: JSON.stringify(beats)
+  }
+  try {
+    await API.graphql(graphqlOperation(UpdateBeatbox, { input: beatbox }))
+    console.log('successfully updated beatbox...')
+  } catch (err) {
+    console.log('error updating beatbox...:', err)
+  }
+  return () => {}
+}
+
+async function createBeatbox(beatbox, setSteps) {
+  try {
+    await API.graphql(graphqlOperation(CreateBeatbox, { input: beatbox }))
+    console.log('successfully created beatbox!')
+  } catch (err) {
+    console.log('error creating beatbox...: ', err)
+    const { errors } = err
+    const beats = errors[0].data.beats
+    setSteps(JSON.parse(beats))
+  }
+}
+
+function reducer(state, action) {
+  return action
+}
 
 export default function DrumMachine() {
-  const [stepState, setSteps] = useState(initialStepState);
+  const [stepState, setSteps] = useReducer(reducer, initialStepState)
   const [buffers, setBuffers] = useState({});
   const [currentStep, setCurrentStepState] = useState(0);
 
@@ -76,6 +113,37 @@ export default function DrumMachine() {
   stepsRef.current = stepState;
   const currentStepRef = useRef(currentStep);
   currentStepRef.current = currentStep;
+
+  // useEffect(() => {
+  //   const beatbox = {
+  //     id, clientId, beats: JSON.stringify(stepState)
+  //   }
+  //   updateBeatbox(beatbox)
+  // }, [])
+
+  useEffect( () => {
+    const beatbox = {
+      id,
+      clientId,
+      beats: JSON.stringify(stepState)
+    }
+    createBeatbox(beatbox, setSteps)
+  }, [])
+
+  useEffect(() => {
+    const subscriber = API.graphql(graphqlOperation(onUpdateBeatbox)).subscribe({
+      next: data => {
+        console.log('data:', data)
+        const { value: { data: { onUpdateBeatbox: { clientId: ClientId, beats }}}} = data
+        if (ClientId === clientId) return
+        console.log('beats:', JSON.parse(beats))
+        console.log('stepState:', stepState)
+        setSteps(JSON.parse(beats))
+        // setSteps(beats)
+      }
+    });
+    return () => subscriber.unsubscribe()
+  }, []);
 
   useEffect(
     () => {
@@ -121,7 +189,7 @@ export default function DrumMachine() {
   );
 
   return (
-    <StepContext.Provider value={{ state: stepState, setSteps }}>
+    <StepContext.Provider value={{ state: stepState, setSteps, updateBeatbox }}>
       <Container>
         <Transport>
           <Logo>Trap Lord 9000</Logo>

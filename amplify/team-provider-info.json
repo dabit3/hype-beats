@@ -1,0 +1,14 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "traplord9000x-20190312140930-authRole",
+            "UnauthRoleArn": "arn:aws:iam::557458351015:role/traplord9000x-20190312140930-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::557458351015:role/traplord9000x-20190312140930-authRole",
+            "Region": "eu-central-1",
+            "DeploymentBucketName": "traplord9000x-20190312140930-deployment",
+            "UnauthRoleName": "traplord9000x-20190312140930-unauthRole",
+            "StackName": "traplord9000x-20190312140930",
+            "StackId": "arn:aws:cloudformation:eu-central-1:557458351015:stack/traplord9000x-20190312140930/20e11710-450b-11e9-8b19-0aee446e3232"
+        }
+    }
+}

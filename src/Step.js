@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 
 import StepContext from './StepContext';
+import { updateBeatbox } from './graphql/mutations';
 
 const flash = keyframes`
   0% {
@@ -36,8 +37,8 @@ export default React.memo(function Step({ on, index, name, doubled }) {
   const context = useContext(StepContext);
   function toggleStep(e) {
     let shiftEnabled = e.shiftKey === true;
-    context.setSteps(state => {
-      let steps = [...state[name]];
+    const { state, setSteps, updateBeatbox } = context
+    let steps = [...state[name]];
       let val =
         steps[index] === 0
           ? shiftEnabled
@@ -47,18 +48,19 @@ export default React.memo(function Step({ on, index, name, doubled }) {
           ? 2
           : 0;
       steps[index] = val;
-      return {
+      const newBeats = {
         ...state,
-        [name]: steps,
-      };
-    });
+      [name]: steps,
+      }
+      updateBeatbox(newBeats)
+      setSteps(newBeats)
   }
   return (
     <StepButton
       on={on}
       offsetColor={isOffsetColor(index)}
       doubled={doubled}
-      onClick={toggleStep}
+      onClick={(e) => toggleStep(e)}
     />
   );
 });

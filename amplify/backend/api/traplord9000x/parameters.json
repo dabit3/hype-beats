@@ -1,0 +1,4 @@
+{
+    "AppSyncApiName": "traplord9000x",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST"
+}
