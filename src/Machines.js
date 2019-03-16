@@ -2,17 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { API, graphqlOperation } from 'aws-amplify'
 import { Link } from 'react-router-dom'
 import uuid from 'uuid/v4'
+import { graphql } from 'react-apollo'
 
 import { listBeatboxs } from './graphql/queries'
-
-const fetchBeatBoxes = async (updater) => {
-  try {
-    const data = await API.graphql(graphqlOperation(listBeatboxs))
-    updater(data.data.listBeatboxs.items)
-  } catch (err) {
-    console.log('error: ', err)
-  }
-}
 
 const navigate = (name, history) => {
   const id = uuid()
@@ -20,13 +12,9 @@ const navigate = (name, history) => {
 }
 
 const Machines = (props) => {
-  const [beatboxes, updateBeatBoxes] = useState([])
+  const { beatboxes } = props
   const [input, setInput] = useState(null)
   const [modalVisible, setModal] = useState(false)
-
-  useEffect(() => {
-    fetchBeatBoxes(updateBeatBoxes)
-  }, [])
 
   return (
     <div style={styles.container}>
@@ -63,6 +51,17 @@ const Machines = (props) => {
     </div>
   )
 }
+
+const AppWithData = graphql(
+  listBeatboxs, {
+    options: {
+      fetchPolicy: 'cache-and-network'
+    },
+    props: props => ({
+      beatboxes: props.data.listBeatboxs ? props.data.listBeatboxs.items : []
+    })
+  }
+)(Machines)
 
 const styles = {
   input: {
@@ -115,4 +114,4 @@ const styles = {
   }
 }
 
-export default Machines
+export default AppWithData

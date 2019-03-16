@@ -4,8 +4,12 @@
   "private": true,
   "dependencies": {
     "aws-amplify": "^1.1.22",
+    "aws-appsync": "^1.7.2",
+    "aws-appsync-react": "^1.2.7",
+    "graphql-tag": "^2.10.1",
     "now": "^12.1.5",
     "react": "^16.7.0-alpha.2",
+    "react-apollo": "^2.5.2",
     "react-cache": "^2.0.0-alpha.1",
     "react-dom": "^16.7.0-alpha.2",
     "react-router-dom": "^4.4.0",

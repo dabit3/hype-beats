@@ -1,4 +1,5 @@
 import React, { useReducer, useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Tone from 'tone';
 
@@ -15,6 +16,14 @@ import { onUpdateBeatbox } from './graphql/subscriptions'
 import uuid from 'uuid/v4'
 
 const clientId = uuid()
+
+const Title = styled.div`
+  max-width: 800px;
+  margin: auto;
+  margin-top: 20px;
+  color: #ffe700;
+  text-decoration: none;
+`
 
 const Container = styled.div`
   max-width: 800px;
@@ -70,7 +79,6 @@ const initialStepState = {
 }
 
 async function updateBeatbox(beats, machineId) {
-  console.log('beats:', beats)
   const beatbox = {
     id: machineId, clientId, beats: JSON.stringify(beats)
   }
@@ -182,6 +190,9 @@ export default function DrumMachine(props) {
 
   return (
     <StepContext.Provider value={{ state: stepState, setSteps, updateBeatbox, machineId }}>
+      <Link to='/'>
+        <Title>View Beatboxes</Title>
+      </Link>
       <Container>
         <Transport>
           <Logo>{machineName}</Logo>
@@ -206,3 +217,4 @@ export default function DrumMachine(props) {
     </StepContext.Provider>
   );
 }
+

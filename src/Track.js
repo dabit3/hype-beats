@@ -30,7 +30,6 @@ export default function Track({ buffer, name, setBuffers }) {
   useEffect(
     () => {
       setBuffers(buffers => {
-        console.log('buffers:', buffers)
         return {
           ...buffers,
           [name]: buffer,

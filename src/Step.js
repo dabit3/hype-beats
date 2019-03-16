@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 
 import StepContext from './StepContext';
-import { updateBeatbox } from './graphql/mutations';
 
 const flash = keyframes`
   0% {

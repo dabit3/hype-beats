@@ -1,5 +1,6 @@
 // eslint-disable
 // this is an auto generated file. This will be overwritten
+import gql from 'graphql-tag'
 
 export const getBeatbox = `query GetBeatbox($id: ID!) {
   getBeatbox(id: $id) {
@@ -10,7 +11,7 @@ export const getBeatbox = `query GetBeatbox($id: ID!) {
   }
 }
 `;
-export const listBeatboxs = `query ListBeatboxs(
+export const listBeatboxs = gql`query ListBeatboxs(
   $filter: ModelBeatboxFilterInput
   $limit: Int
   $nextToken: String
