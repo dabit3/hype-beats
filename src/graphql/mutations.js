@@ -6,6 +6,7 @@ export const createBeatbox = `mutation CreateBeatbox($input: CreateBeatboxInput!
     id
     clientId
     beats
+    name
   }
 }
 `;
@@ -14,6 +15,7 @@ export const updateBeatbox = `mutation UpdateBeatbox($input: UpdateBeatboxInput!
     id
     clientId
     beats
+    name
   }
 }
 `;
@@ -22,6 +24,7 @@ export const deleteBeatbox = `mutation DeleteBeatbox($input: DeleteBeatboxInput!
     id
     clientId
     beats
+    name
   }
 }
 `;

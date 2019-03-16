@@ -6,6 +6,7 @@ export const onCreateBeatbox = `subscription OnCreateBeatbox {
     id
     clientId
     beats
+    name
   }
 }
 `;
@@ -14,6 +15,7 @@ export const onUpdateBeatbox = `subscription OnUpdateBeatbox {
     id
     clientId
     beats
+    name
   }
 }
 `;
@@ -22,6 +24,7 @@ export const onDeleteBeatbox = `subscription OnDeleteBeatbox {
     id
     clientId
     beats
+    name
   }
 }
 `;

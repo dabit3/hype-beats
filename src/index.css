@@ -1,6 +1,7 @@
 html,
 body {
   height: 100%;
+  border: 4px solid #ff32ff;
 }
 
 * {
@@ -16,4 +17,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  font-family: 'stilltime';
+  src: url('assets/stilltime.ttf');
+}
+
+@font-face {
+  font-family: 'goodtimes';
+  src: url('assets/goodtimes.ttf');
 }

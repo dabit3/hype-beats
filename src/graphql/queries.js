@@ -6,6 +6,7 @@ export const getBeatbox = `query GetBeatbox($id: ID!) {
     id
     clientId
     beats
+    name
   }
 }
 `;
@@ -19,6 +20,7 @@ export const listBeatboxs = `query ListBeatboxs(
       id
       clientId
       beats
+      name
     }
     nextToken
   }
