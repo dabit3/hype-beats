@@ -125,7 +125,8 @@ export default function DrumMachine() {
     const beatbox = {
       id,
       clientId,
-      beats: JSON.stringify(stepState)
+      beats: JSON.stringify(stepState),
+      name: 'Some Name'
     }
     createBeatbox(beatbox, setSteps)
   }, [])
