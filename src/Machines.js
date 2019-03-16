@@ -24,6 +24,10 @@ const Machines = (props) => {
           onClick={() => setModal(!modalVisible)}
           style={styles.button}>Create Beatbox</button>
       </div>
+      <div style={{
+        height: 'calc(100vh - 200px)',
+        overflow: 'scroll'
+      }}>
       {
         beatboxes.map((b, i) => (
           <Link key={i} to={`/machine/${b.id}/${b.name}`} style={styles.link}>
@@ -31,6 +35,7 @@ const Machines = (props) => {
           </Link>
         ))
       }
+      </div>
       {
         modalVisible && (
           <div style={styles.modal}>
@@ -48,6 +53,9 @@ const Machines = (props) => {
           </div>
         )
       }
+      <div style={styles.links}>
+        <p style={styles.hrefs}>Built with <a target="_blank" style={styles.href} href="https://github.com/kenwheeler/hooks-drum-machine">Hooks Drum Machine</a> by <a target="_blank" style={styles.href} href="https://twitter.com/ken_wheeler">Ken Wheeler</a>, <a target="_blank" style={styles.href} href="https://aws-amplify.github.io/">AWS Amplify</a>, & <a target="_blank" style={styles.href} href="https://aws.amazon.com/appsync/">AWS AppSync</a></p>
+      </div>
     </div>
   )
 }
@@ -64,6 +72,16 @@ const AppWithData = graphql(
 )(Machines)
 
 const styles = {
+  links: {
+    display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end'
+  },
+  hrefs: {
+    fontSize: 13,
+    color: '#ff32ff'
+  },
+  href: {
+    color: '#ffe700'
+  },
   input: {
     padding: 10,
     outline: 'none',
@@ -108,7 +126,7 @@ const styles = {
   },
   title: {
     fontFamily: 'stilltime',
-    color: '#74ee15',
+    color: '#ff32ff',
     padding: '0px 20px 0px 0px',
     cursor: 'pointer'
   }

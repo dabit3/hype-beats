@@ -4,12 +4,13 @@ body {
   border: 4px solid #ff32ff;
 }
 
-a h1:hover {
+a:hover, a h1:hover {
   opacity: 0.75;
 }
 
 a {
   text-decoration: none;
+  color: #001eff;
 }
 
 body {
