@@ -4,10 +4,6 @@ body {
   border: 4px solid #ff32ff;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 body {
   background: #333;
   margin: 0;
@@ -27,4 +23,9 @@ body {
 @font-face {
   font-family: 'goodtimes';
   src: url('assets/goodtimes.ttf');
+}
+
+* {
+  box-sizing: border-box;
+  font-family: goodtimes, sans-serif;
 }

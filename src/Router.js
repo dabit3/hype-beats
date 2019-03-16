@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 
 import Machines from './Machines'
 import Machine from './DrumMachine'
@@ -10,7 +10,7 @@ function Main() {
       <div>
         <Switch>
           <Route exact path="/" component={Machines} />
-          <Route path="/machine/:id" component={Machine} />
+          <Route path="/machine/:id/:name?" component={Machine} />
         </Switch>
       </div>
     </Router>

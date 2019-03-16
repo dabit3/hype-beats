@@ -14,7 +14,6 @@ import { createBeatbox as CreateBeatbox, updateBeatbox as UpdateBeatbox } from '
 import { onUpdateBeatbox } from './graphql/subscriptions'
 import uuid from 'uuid/v4'
 
-const id = '001'
 const clientId = uuid()
 
 const Container = styled.div`
@@ -70,9 +69,10 @@ const initialStepState = {
   OpenHiHat: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 }
 
-async function updateBeatbox(beats) {
+async function updateBeatbox(beats, machineId) {
+  console.log('beats:', beats)
   const beatbox = {
-    id, clientId, beats: JSON.stringify(beats)
+    id: machineId, clientId, beats: JSON.stringify(beats)
   }
   try {
     await API.graphql(graphqlOperation(UpdateBeatbox, { input: beatbox }))
@@ -99,7 +99,9 @@ function reducer(state, action) {
   return action
 }
 
-export default function DrumMachine() {
+export default function DrumMachine(props) {
+  const { name: machineName, id: machineId } = props.match.params
+
   const [stepState, setSteps] = useReducer(reducer, initialStepState)
   const [buffers, setBuffers] = useState({});
   const [currentStep, setCurrentStepState] = useState(0);
@@ -113,20 +115,13 @@ export default function DrumMachine() {
   stepsRef.current = stepState;
   const currentStepRef = useRef(currentStep);
   currentStepRef.current = currentStep;
-
-  // useEffect(() => {
-  //   const beatbox = {
-  //     id, clientId, beats: JSON.stringify(stepState)
-  //   }
-  //   updateBeatbox(beatbox)
-  // }, [])
-
+  
   useEffect( () => {
     const beatbox = {
-      id,
+      id: machineId,
       clientId,
       beats: JSON.stringify(stepState),
-      name: 'some name'
+      name: machineName
     }
     createBeatbox(beatbox, setSteps)
   }, [])
@@ -134,13 +129,9 @@ export default function DrumMachine() {
   useEffect(() => {
     const subscriber = API.graphql(graphqlOperation(onUpdateBeatbox)).subscribe({
       next: data => {
-        console.log('data:', data)
         const { value: { data: { onUpdateBeatbox: { clientId: ClientId, beats }}}} = data
         if (ClientId === clientId) return
-        console.log('beats:', JSON.parse(beats))
-        console.log('stepState:', stepState)
         setSteps(JSON.parse(beats))
-        // setSteps(beats)
       }
     });
     return () => subscriber.unsubscribe()
@@ -190,10 +181,10 @@ export default function DrumMachine() {
   );
 
   return (
-    <StepContext.Provider value={{ state: stepState, setSteps, updateBeatbox }}>
+    <StepContext.Provider value={{ state: stepState, setSteps, updateBeatbox, machineId }}>
       <Container>
         <Transport>
-          <Logo>Trap Lord 9000</Logo>
+          <Logo>{machineName}</Logo>
           {bpmSelector}
           {startButton}
         </Transport>
