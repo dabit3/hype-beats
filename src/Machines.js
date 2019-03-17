@@ -50,6 +50,11 @@ const Machines = (props) => {
               style={{...styles.button, ...styles.createButton}}>
               Create
             </button>
+            <button
+              onClick={() => setModal(!modalVisible)}
+              style={{...styles.button, ...styles.cancelButton}}>
+              Cancel
+            </button>
           </div>
         )
       }
@@ -102,13 +107,16 @@ const styles = {
   createButton: {
     backgroundColor: '#ff32ff'
   },
+  cancelButton: {
+    margin: '8px 0px 10px'
+  },
   modal: {
     padding: '0px 25px',
     position: 'fixed',
     zIndex: 100,
     width: 400,
-    height: 200,
-    top: 'calc(50% - 100px)',
+    height: 230,
+    top: 'calc(50% - 115px)',
     left: 'calc(50% - 200px)',
     backgroundColor: 'white',
     display: 'flex',
