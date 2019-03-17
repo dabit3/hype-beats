@@ -43,14 +43,16 @@ export default function StepSequencer({
       <IndicatorWrapper>
         {playing && <StepIndicator step={currentStep} />}
       </IndicatorWrapper>
-      {config.tracks.map(t => (
-        <Track
-          name={t}
-          key={t}
-          buffer={bufferResource.read(config.samples[t])}
-          setBuffers={setBuffers}
-        />
-      ))}
+      {config.tracks.map(t => {
+        return (
+          <Track
+            name={t}
+            key={t}
+            buffer={bufferResource.read(config.samples[t])}
+            setBuffers={setBuffers}
+          />
+        )
+      })}
     </Wrapper>
   );
 }

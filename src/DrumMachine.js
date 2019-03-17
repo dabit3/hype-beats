@@ -112,6 +112,7 @@ export default function DrumMachine(props) {
 
   const [stepState, setSteps] = useReducer(reducer, initialStepState)
   const [buffers, setBuffers] = useState({});
+
   const [currentStep, setCurrentStepState] = useState(0);
 
   const [start, startButton] = useStart();
@@ -165,6 +166,7 @@ export default function DrumMachine(props) {
           return step > 14 ? 0 : step + 1;
         });
       }, '16n');
+      return () => buffersRef.current = {}
     },
     [config]
   );
@@ -184,6 +186,7 @@ export default function DrumMachine(props) {
         Tone.Transport.stop();
         setCurrentStepState(0);
       }
+      return () => Tone.Transport.stop()
     },
     [start]
   );

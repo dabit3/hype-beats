@@ -26,7 +26,6 @@ const Name = styled.h2`
 `;
 
 export default function Track({ buffer, name, setBuffers }) {
-
   useEffect(
     () => {
       setBuffers(buffers => {
@@ -34,10 +33,8 @@ export default function Track({ buffer, name, setBuffers }) {
           ...buffers,
           [name]: buffer,
         }
-      });
-    },
-    [buffer]
-  );
+      })
+    }, [buffer]);
   return (
     <Wrapper>
       <Info>
