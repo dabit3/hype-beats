@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { bufferResource } from './bufferResource';
 
@@ -23,6 +23,11 @@ export default function FX({ sound, title }) {
   let [held, setHeld] = useState(false);
   let buffer = bufferResource.read(sound);
   buffer.volume.value = -8;
+
+  useEffect(() => {
+    buffer.start();
+    buffer.stop();
+  }, [])
 
   function playSound(e) {
     if (held) {
