@@ -108,7 +108,9 @@ const styles = {
     padding: 10,
     outline: 'none',
     fontSize: 16,
-    marginBottom: 10
+    marginBottom: 10,
+    border: 'none',
+    borderBottom: '2px solid #ddd'
   },
   button: {
     backgroundColor: '#ffe700',
