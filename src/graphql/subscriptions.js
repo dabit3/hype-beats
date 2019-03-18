@@ -1,7 +1,8 @@
 // eslint-disable
 // this is an auto generated file. This will be overwritten
+import gql from 'graphql-tag'
 
-export const onCreateBeatbox = `subscription OnCreateBeatbox {
+export const onCreateBeatbox = gql`subscription OnCreateBeatbox {
   onCreateBeatbox {
     id
     clientId

@@ -200,7 +200,7 @@ export default function DrumMachine(props) {
     },
     [start]
   );
-
+  debugger
   return (
     <Wrapper>
     <StepContext.Provider value={{ state: stepState, setSteps, updateBeatbox, machineId }}>
@@ -213,7 +213,7 @@ export default function DrumMachine(props) {
           {bpmSelector}
           {startButton}
         </Transport>
-        <React.Suspense fallback={<p>loading</p>}>
+        <React.Suspense fallback={<p style={{paddingLeft: 30, color: 'white'}}>loading</p>}>
           <StepSequencer
             config={config}
             currentStep={currentStepRef.current}

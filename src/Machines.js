@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom'
 import uuid from 'uuid/v4'
 import { graphql } from 'react-apollo'
 import styled from 'styled-components'
+import { buildSubscription } from 'aws-appsync'
 
 import { listBeatboxs } from './graphql/queries'
+import { onCreateBeatbox } from './graphql/subscriptions'
 
 const ListContainer = styled.div`
   height: calc(100vh - 200px);
@@ -23,6 +25,12 @@ const Machines = (props) => {
   const { beatboxes } = props
   const [input, setInput] = useState(null)
   const [modalVisible, setModal] = useState(false)
+
+  useEffect(() => {
+    props.data.subscribeToMore(
+      buildSubscription(onCreateBeatbox, listBeatboxs)
+    )
+  })
 
   return (
     <div style={styles.container}>
@@ -76,7 +84,8 @@ const AppWithData = graphql(
       fetchPolicy: 'cache-and-network'
     },
     props: props => ({
-      beatboxes: props.data.listBeatboxs ? props.data.listBeatboxs.items : []
+      beatboxes: props.data.listBeatboxs ? props.data.listBeatboxs.items : [],
+      data: props.data
     })
   }
 )(Machines)

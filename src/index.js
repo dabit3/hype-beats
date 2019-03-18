@@ -23,9 +23,11 @@ const client = new AWSAppSyncClient({
 
 const AppWithProvider = () => (
   <ApolloProvider client={client}>
-    <Rehydrated>
-      <Router />
-    </Rehydrated>
+    <Rehydrated
+      render={({ rehydrated }) => (
+        rehydrated ? <Router /> : <p style={{ padding: 30, color: 'white' }}>Loading...</p>
+      )}
+    />
   </ApolloProvider>
 );
 
