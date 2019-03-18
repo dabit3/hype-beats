@@ -6,7 +6,7 @@ This is a fork of [hooks-drum-machine](https://github.com/kenwheeler/hooks-drum-
 
 > Click [here](https://www.hypebeats.dev/#/) to view the demo.
 
-![https://www.youtube.com/watch?v=nm2kt3h1--c](youtube.png)
+[![](youtube.png)](https://www.youtube.com/watch?v=nm2kt3h1--c)
 
 ## To deploy this app (CLI)
 
