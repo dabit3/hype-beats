@@ -59,7 +59,10 @@ const Machines = (props) => {
               onChange={e => setInput(e.target.value)}
             />
             <button
-              onClick={() => navigate(input, props.history)}
+              onClick={() => {
+                if (!input) return
+                navigate(input, props.history)
+              }}
               style={{...styles.button, ...styles.createButton}}>
               Create
             </button>

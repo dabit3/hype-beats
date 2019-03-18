@@ -135,7 +135,7 @@ export default function DrumMachine(props) {
   const currentStepRef = useRef(currentStep);
   currentStepRef.current = currentStep;
   
-  useEffect( () => {
+  useEffect(() => {
     const machine = {
       id: machineId,
       clientId,
