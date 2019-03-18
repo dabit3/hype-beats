@@ -8,7 +8,19 @@ This is a fork of [hooks-drum-machine](https://github.com/kenwheeler/hooks-drum-
 
 [![](youtube.png)](https://www.youtube.com/watch?v=nm2kt3h1--c)
 
-## To deploy this app (CLI)
+## To deploy this app - Amplify Console
+
+1. Clone the repo
+
+2. Visit the Amplify console & click __GET STARTED__ under the __Deploy__ section
+
+3. Connect your GitHub account
+
+4. Choose the repository & branch
+
+5. Click __Save__, then __Save & Deploy__
+
+## To deploy this app - AWS Amplify CLI
 
 1. Clone the repo
 
@@ -25,15 +37,3 @@ amplify push
 ```sh
 npm start
 ```
-
-## To deploy this app (Amplify Console)
-
-1. Clone the repo
-
-2. Visit the Amplify console & click __GET STARTED__ under the __Deploy__ section
-
-3. Connect your GitHub account
-
-4. Choose the repository & branch
-
-5. Click __Save__, then __Save & Deploy__
