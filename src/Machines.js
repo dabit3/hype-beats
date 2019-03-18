@@ -38,7 +38,7 @@ const Machines = (props) => {
         <h1 style={styles.heading}>Hype Beats</h1>
         <button
           onClick={() => setModal(!modalVisible)}
-          style={styles.button}>Create Beatbox</button>
+          style={styles.button}>Create Machine</button>
       </div>
       <ListContainer>
       {
