@@ -2,8 +2,8 @@
 // this is an auto generated file. This will be overwritten
 import gql from 'graphql-tag'
 
-export const getBeatbox = `query GetBeatbox($id: ID!) {
-  getBeatbox(id: $id) {
+export const getDrumMachine = `query GetDrumMachine($id: ID!) {
+  getDrumMachine(id: $id) {
     id
     clientId
     beats
@@ -11,12 +11,12 @@ export const getBeatbox = `query GetBeatbox($id: ID!) {
   }
 }
 `;
-export const listBeatboxs = gql`query ListBeatboxs(
-  $filter: ModelBeatboxFilterInput
+export const listDrumMachines = gql`query ListDrumMachines(
+  $filter: ModelDrumMachineFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listBeatboxs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listDrumMachines(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
       clientId

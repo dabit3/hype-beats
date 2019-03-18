@@ -2,8 +2,8 @@
 // this is an auto generated file. This will be overwritten
 import gql from 'graphql-tag'
 
-export const onCreateBeatbox = gql`subscription OnCreateBeatbox {
-  onCreateBeatbox {
+export const onCreateDrumMachine = gql`subscription OnCreateDrumMachine {
+  onCreateDrumMachine {
     id
     clientId
     beats
@@ -11,8 +11,8 @@ export const onCreateBeatbox = gql`subscription OnCreateBeatbox {
   }
 }
 `;
-export const onUpdateBeatbox = `subscription OnUpdateBeatbox {
-  onUpdateBeatbox {
+export const onUpdateDrumMachine = `subscription OnUpdateDrumMachine {
+  onUpdateDrumMachine {
     id
     clientId
     beats
@@ -20,8 +20,8 @@ export const onUpdateBeatbox = `subscription OnUpdateBeatbox {
   }
 }
 `;
-export const onDeleteBeatbox = `subscription OnDeleteBeatbox {
-  onDeleteBeatbox {
+export const onDeleteDrumMachine = `subscription OnDeleteDrumMachine {
+  onDeleteDrumMachine {
     id
     clientId
     beats

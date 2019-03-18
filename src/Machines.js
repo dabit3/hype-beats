@@ -5,8 +5,8 @@ import { graphql } from 'react-apollo'
 import styled from 'styled-components'
 import { buildSubscription } from 'aws-appsync'
 
-import { listBeatboxs } from './graphql/queries'
-import { onCreateBeatbox } from './graphql/subscriptions'
+import { listDrumMachines } from './graphql/queries'
+import { onCreateDrumMachine } from './graphql/subscriptions'
 
 const ListContainer = styled.div`
   height: calc(100vh - 200px);
@@ -22,13 +22,13 @@ const navigate = (name, history) => {
 }
 
 const Machines = (props) => {
-  const { beatboxes } = props
+  const { drumMachines } = props
   const [input, setInput] = useState(null)
   const [modalVisible, setModal] = useState(false)
 
   useEffect(() => {
     props.data.subscribeToMore(
-      buildSubscription(onCreateBeatbox, listBeatboxs)
+      buildSubscription(onCreateDrumMachine, listDrumMachines)
     )
   })
 
@@ -42,7 +42,7 @@ const Machines = (props) => {
       </div>
       <ListContainer>
       {
-        beatboxes.map((b, i) => (
+        drumMachines.map((b, i) => (
           <Link key={i} to={`/machine/${b.id}/${b.name}`} style={styles.link}>
             <h1 style={styles.title}>{b.name}</h1>
           </Link>
@@ -52,7 +52,7 @@ const Machines = (props) => {
       {
         modalVisible && (
           <div style={styles.modal}>
-            <h2>New Beatbox</h2>
+            <h2>New Drum Machine</h2>
             <input
               style={styles.input}
               placeholder='Name'
@@ -79,12 +79,12 @@ const Machines = (props) => {
 }
 
 const AppWithData = graphql(
-  listBeatboxs, {
+  listDrumMachines, {
     options: {
       fetchPolicy: 'cache-and-network'
     },
     props: props => ({
-      beatboxes: props.data.listBeatboxs ? props.data.listBeatboxs.items : [],
+      drumMachines: props.data.listDrumMachines ? props.data.listDrumMachines.items : [],
       data: props.data
     })
   }

@@ -36,7 +36,7 @@ export default React.memo(function Step({ on, index, name, doubled }) {
   const context = useContext(StepContext);
   function toggleStep(e) {
     let shiftEnabled = e.shiftKey === true;
-    const { machineId, state, setSteps, updateBeatbox } = context
+    const { machineId, state, setSteps, updateDrumMachine } = context
     let steps = [...state[name]];
       let val =
         steps[index] === 0
@@ -51,7 +51,7 @@ export default React.memo(function Step({ on, index, name, doubled }) {
         ...state,
       [name]: steps,
       }
-      updateBeatbox(newBeats, machineId)
+      updateDrumMachine(newBeats, machineId)
       setSteps(newBeats)
   }
   return (

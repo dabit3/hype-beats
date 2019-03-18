@@ -11,8 +11,8 @@ import StepSequencer from './StepSequencer';
 import Fx from './FX';
 
 import { API, graphqlOperation } from 'aws-amplify'
-import { createBeatbox as CreateBeatbox, updateBeatbox as UpdateBeatbox } from './graphql/mutations'
-import { onUpdateBeatbox } from './graphql/subscriptions'
+import { createDrumMachine as CreateDrumMachine, updateDrumMachine as UpdateDrumMachine } from './graphql/mutations'
+import { onUpdateDrumMachine } from './graphql/subscriptions'
 import uuid from 'uuid/v4'
 
 const clientId = uuid()
@@ -88,25 +88,25 @@ const initialStepState = {
   OpenHiHat: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 }
 
-async function updateBeatbox(beats, machineId) {
+async function updateDrumMachine(beats, machineId) {
   const beatbox = {
     id: machineId, clientId, beats: JSON.stringify(beats)
   }
   try {
-    await API.graphql(graphqlOperation(UpdateBeatbox, { input: beatbox }))
-    console.log('successfully updated beatbox...')
+    await API.graphql(graphqlOperation(UpdateDrumMachine, { input: beatbox }))
+    console.log('successfully updated drum machine...')
   } catch (err) {
-    console.log('error updating beatbox...:', err)
+    console.log('error updating drum machine...:', err)
   }
   return () => {}
 }
 
-async function createBeatbox(beatbox, setSteps) {
+async function createDrumMachine(machine, setSteps) {
   try {
-    await API.graphql(graphqlOperation(CreateBeatbox, { input: beatbox }))
-    console.log('successfully created beatbox!')
+    await API.graphql(graphqlOperation(CreateDrumMachine, { input: machine }))
+    console.log('successfully created drum machine!')
   } catch (err) {
-    console.log('error creating beatbox...: ', err)
+    console.log('error creating drum machine...: ', err)
     const { errors } = err
     const beats = errors[0].data.beats
     setSteps(JSON.parse(beats))
@@ -136,19 +136,19 @@ export default function DrumMachine(props) {
   currentStepRef.current = currentStep;
   
   useEffect( () => {
-    const beatbox = {
+    const machine = {
       id: machineId,
       clientId,
       beats: JSON.stringify(stepState),
       name: machineName
     }
-    createBeatbox(beatbox, setSteps)
+    createDrumMachine(machine, setSteps)
   }, [])
 
   useEffect(() => {
-    const subscriber = API.graphql(graphqlOperation(onUpdateBeatbox)).subscribe({
+    const subscriber = API.graphql(graphqlOperation(onUpdateDrumMachine)).subscribe({
       next: data => {
-        const { value: { data: { onUpdateBeatbox: { clientId: ClientId, beats }}}} = data
+        const { value: { data: { onUpdateDrumMachine: { clientId: ClientId, beats }}}} = data
         if (ClientId === clientId) return
         setSteps(JSON.parse(beats))
       }
@@ -200,10 +200,9 @@ export default function DrumMachine(props) {
     },
     [start]
   );
-  debugger
   return (
     <Wrapper>
-    <StepContext.Provider value={{ state: stepState, setSteps, updateBeatbox, machineId }}>
+    <StepContext.Provider value={{ state: stepState, setSteps, updateDrumMachine, machineId }}>
       <Link to='/'>
         <Title>View Beatboxes</Title>
       </Link>

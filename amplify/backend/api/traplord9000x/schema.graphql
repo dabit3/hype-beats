@@ -1,4 +1,4 @@
-type Beatbox @model {
+type DrumMachine @model {
   id: ID!
   clientId: ID!
   beats: String!
