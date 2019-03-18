@@ -20,6 +20,7 @@ const clientId = uuid()
 const Wrapper = styled.div`
   border: 9px solid #ff32ff;
   min-width: 840px;
+  height: 100vh;
 `
 
 const Title = styled.div`
