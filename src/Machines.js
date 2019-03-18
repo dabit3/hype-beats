@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { API, graphqlOperation } from 'aws-amplify'
 import { Link } from 'react-router-dom'
 import uuid from 'uuid/v4'
 import { graphql } from 'react-apollo'
+import styled from 'styled-components'
 
 import { listBeatboxs } from './graphql/queries'
+
+const ListContainer = styled.div`
+  height: calc(100vh - 200px);
+  overflow: scroll;
+  @media (max-width: 440px) {
+    height: calc(100vh - 220px);
+  }
+`
 
 const navigate = (name, history) => {
   const id = uuid()
@@ -24,10 +32,7 @@ const Machines = (props) => {
           onClick={() => setModal(!modalVisible)}
           style={styles.button}>Create Beatbox</button>
       </div>
-      <div style={{
-        height: 'calc(100vh - 200px)',
-        overflow: 'scroll'
-      }}>
+      <ListContainer>
       {
         beatboxes.map((b, i) => (
           <Link key={i} to={`/machine/${b.id}/${b.name}`} style={styles.link}>
@@ -35,7 +40,7 @@ const Machines = (props) => {
           </Link>
         ))
       }
-      </div>
+      </ListContainer>
       {
         modalVisible && (
           <div style={styles.modal}>
@@ -123,7 +128,9 @@ const styles = {
     flexDirection: 'column'
   },
   container: {
-    padding: '0px 30px'
+    padding: '0px 30px',
+    border: '9px solid #ff32ff',
+    height: '100vh'
   },
   heading: {
     color: '#4deeea',

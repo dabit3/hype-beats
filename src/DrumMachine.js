@@ -17,15 +17,24 @@ import uuid from 'uuid/v4'
 
 const clientId = uuid()
 
+const Wrapper = styled.div`
+  border: 9px solid #ff32ff;
+  min-width: 840px;
+`
+
 const Title = styled.div`
   max-width: 800px;
   margin: auto;
   margin-top: 20px;
   color: #ffe700;
   text-decoration: none;
+  @media (max-width: 440px) {
+    margin-left: 20px;
+  }
 `
 
 const Container = styled.div`
+  min-width: 800px;
   max-width: 800px;
   margin: auto;
   background: linear-gradient(to bottom right, #222, #0a0a0a);
@@ -192,6 +201,7 @@ export default function DrumMachine(props) {
   );
 
   return (
+    <Wrapper>
     <StepContext.Provider value={{ state: stepState, setSteps, updateBeatbox, machineId }}>
       <Link to='/'>
         <Title>View Beatboxes</Title>
@@ -218,6 +228,7 @@ export default function DrumMachine(props) {
         </React.Suspense>
       </Container>
     </StepContext.Provider>
+    </Wrapper>
   );
 }
 
