@@ -25,3 +25,13 @@ npm start
 ```
 
 ## To deploy this app (Amplify Console)
+
+1. Clone the repo
+
+2. Visit the Amplify console & click __GET STARTED__ under the __Deploy__ section
+
+3. Connect your GitHub account
+
+4. Choose the repository & branch
+
+5. Click __Save__, then __Save & Deploy__
