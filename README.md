@@ -10,9 +10,9 @@ This is a fork of [hooks-drum-machine](https://github.com/kenwheeler/hooks-drum-
 
 ## To deploy this app - Amplify Console
 
-1. Clone the repo
+1. Fork the repo
 
-2. Visit the Amplify console & click __GET STARTED__ under the __Deploy__ section
+2. Visit the [Amplify Console](https://console.aws.amazon.com/amplify/home) & click __GET STARTED__ under the __Deploy__ section
 
 3. Connect your GitHub account
 
