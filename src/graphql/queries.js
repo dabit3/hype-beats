@@ -11,12 +11,8 @@ export const getDrumMachine = `query GetDrumMachine($id: ID!) {
   }
 }
 `;
-export const listDrumMachines = gql`query ListDrumMachines(
-  $filter: ModelDrumMachineFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listDrumMachines(filter: $filter, limit: $limit, nextToken: $nextToken) {
+export const listDrumMachines = gql`query ListDrumMachines {
+  listDrumMachines(limit: 500) {
     items {
       id
       clientId
