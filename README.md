@@ -20,7 +20,7 @@ This is a fork of [hooks-drum-machine](https://github.com/kenwheeler/hooks-drum-
 
 5. Click __Save__, then __Save & Deploy__
 
-## To deploy this app - AWS Amplify CLI
+## To run locally - Amplify CLI
 
 1. Clone the repo
 
