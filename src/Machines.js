@@ -10,7 +10,8 @@ import { onCreateDrumMachine } from './graphql/subscriptions'
 
 const ListContainer = styled.div`
   height: calc(100vh - 200px);
-  overflow: scroll;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   @media (max-width: 440px) {
     height: calc(100vh - 220px);
   }
