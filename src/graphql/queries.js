@@ -16,7 +16,7 @@ export const listDrumMachines = gql`query ListDrumMachines(
   $limit: Int
   $nextToken: String
 ) {
-  listDrumMachines(filter: $filter, limit: 500, nextToken: $nextToken) {
+  listDrumMachines(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
       clientId
