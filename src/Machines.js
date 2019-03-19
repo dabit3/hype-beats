@@ -75,7 +75,7 @@ const Machines = (props) => {
         )
       }
       <div style={styles.links}>
-        <p style={styles.hrefs}>Built with <a target="_blank" style={styles.href} href="https://github.com/kenwheeler/hooks-drum-machine">Hooks Drum Machine</a> by <a target="_blank" style={styles.href} href="https://twitter.com/ken_wheeler">Ken Wheeler</a>, <a target="_blank" style={styles.href} href="https://aws-amplify.github.io/">AWS Amplify</a>, & <a target="_blank" style={styles.href} href="https://aws.amazon.com/appsync/">AWS AppSync</a></p>
+        <p style={styles.hrefs}>Built with <a target="_blank" style={styles.href} href="https://github.com/kenwheeler/hooks-drum-machine">Hooks Drum Machine</a> by <a target="_blank" style={styles.href} href="https://twitter.com/ken_wheeler">Ken Wheeler</a>, <a target="_blank" style={styles.href} href="https://aws-amplify.github.io/">AWS Amplify</a>, & <a target="_blank" style={styles.href} href="https://aws.amazon.com/appsync/">AWS AppSync</a>. <a target="_blank" href="https://github.com/dabit3/hype-beats" style={styles.href2}>View Code</a></p>
       </div>
     </div>
   )
@@ -103,6 +103,9 @@ const styles = {
   },
   href: {
     color: '#ffe700'
+  },
+  href2: {
+    color: 'rgb(77, 238, 234)'
   },
   input: {
     padding: 10,
