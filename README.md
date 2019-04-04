@@ -12,7 +12,7 @@ This is a fork of [hooks-drum-machine](https://github.com/kenwheeler/hooks-drum-
 
 Deploy the full stack to the Amplify Console:
 
-[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/username/repository)
+[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/dabit3/hype-beats)
 
 ## To run locally - Amplify CLI
 
