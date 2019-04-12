@@ -21,6 +21,8 @@ const client = new AWSAppSyncClient({
   }
 });
 
+window.LOG_LEVEL = "DEBUG"
+
 const AppWithProvider = () => (
   <ApolloProvider client={client}>
     <Rehydrated
