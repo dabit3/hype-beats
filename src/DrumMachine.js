@@ -12,7 +12,7 @@ import Fx from './FX';
 
 import { API, graphqlOperation } from 'aws-amplify'
 import { createDrumMachine as CreateDrumMachine, updateDrumMachine as UpdateDrumMachine } from './graphql/mutations'
-import { onUpdateDrumMachine } from './graphql/subscriptions'
+import { onUpdateByID } from './graphql/subscriptions'
 import uuid from 'uuid/v4'
 
 const clientId = uuid()
@@ -146,9 +146,11 @@ export default function DrumMachine(props) {
   }, [])
 
   useEffect(() => {
-    const subscriber = API.graphql(graphqlOperation(onUpdateDrumMachine)).subscribe({
+    console.log('machineId: ', machineId)
+    const subscriber = API.graphql(graphqlOperation(onUpdateByID, { id: machineId })).subscribe({
       next: data => {
-        const { value: { data: { onUpdateDrumMachine: { clientId: ClientId, beats }}}} = data
+        console.log('data:', data)
+        const { value: { data: { onUpdateByID: { clientId: ClientId, beats }}}} = data
         if (ClientId === clientId) return
         setSteps(JSON.parse(beats))
       }

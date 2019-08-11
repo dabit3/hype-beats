@@ -4,3 +4,8 @@ type DrumMachine @model {
   beats: String!
   name: String!
 }
+
+type Subscription {
+  onUpdateByID(id: ID!): DrumMachine
+    @aws_subscribe(mutations: ["updateDrumMachine"])
+}

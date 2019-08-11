@@ -29,3 +29,13 @@ export const onDeleteDrumMachine = `subscription OnDeleteDrumMachine {
   }
 }
 `;
+
+export const onUpdateByID = `subscription onUpdateByID($id: ID!) {
+  onUpdateByID(id: $id) {
+    id
+    clientId
+    beats
+    name
+  }
+}
+`;
